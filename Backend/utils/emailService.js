@@ -8,9 +8,9 @@ const nodemailer = require('nodemailer');
 //console.log("📨 MAIL_PASS:", process.env.MAIL_PASS);
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
+  host: "smtp-relay.brevo.com",
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
