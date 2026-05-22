@@ -4,8 +4,8 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 // 🔍 Confirm values are loaded
-console.log("📨 MAIL_USER:", process.env.MAIL_USER);
-console.log("📨 MAIL_PASS:", process.env.MAIL_PASS);
+//console.log("📨 MAIL_USER:", process.env.MAIL_USER);
+//console.log("📨 MAIL_PASS:", process.env.MAIL_PASS);
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
