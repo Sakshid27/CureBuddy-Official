@@ -15,13 +15,18 @@ exports.sendOtp = async (req, res) => {
   otpStore[email] = otp;
 
   // Set up email transport
-  const transporter = nodemailer.createTransport({
-    service: "Gmail", // Or use Outlook/Yahoo etc.
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
-    },
-  });
+ const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
+});
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -157,13 +162,18 @@ exports.forgotPassword = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "15m" });
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-      },
-    });
+   const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
+});
 
    const resetLink = `${process.env.FRONTEND_URL}/reset-password/${user._id}/${token}`;
 
