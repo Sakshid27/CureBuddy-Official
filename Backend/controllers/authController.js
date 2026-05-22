@@ -15,16 +15,13 @@ exports.sendOtp = async (req, res) => {
   otpStore[email] = otp;
 
   // Set up email transport
- const transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false,
   },
 });
 
@@ -162,16 +159,13 @@ exports.forgotPassword = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "15m" });
 
-   const transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false,
   },
 });
 
